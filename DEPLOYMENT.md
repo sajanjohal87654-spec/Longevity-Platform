@@ -23,13 +23,19 @@ Frontend:
 Backend:
 
 - Project root: `backend`
+- Build command: `pip install -r requirements.txt`
 - Start command: `python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 - Production environment variables:
   - `APP_PUBLIC_URL=https://longevityplatform.app`
   - `CORS_ALLOW_ORIGINS=https://longevityplatform.app,https://www.longevityplatform.app`
   - `OURA_REDIRECT_URI=https://longevityplatform.app/integrations?provider=oura`
+  - `SQLITE_DB_PATH=/var/data/local.db`
   - `OURA_CLIENT_ID=<from Oura>`
   - `OURA_CLIENT_SECRET=<from Oura>`
+
+The repository includes `render.yaml` for Render. It creates the FastAPI web service,
+sets the public URL/CORS/Oura redirect values, and mounts a persistent disk at
+`/var/data` so SQLite data is not stored in the temporary app filesystem.
 
 ## Domain DNS
 
