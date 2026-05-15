@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: longevity-platform-api
+    runtime: python
+    plan: starter
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_PUBLIC_URL
+        value: https://longevityplatform.app
+      - key: CORS_ALLOW_ORIGINS
+        value: https://longevityplatform.app,https://www.longevityplatform.app
+      - key: OURA_REDIRECT_URI
+        value: https://longevityplatform.app/integrations?provider=oura
+      - key: SQLITE_DB_PATH
+        value: /var/data/local.db
+      - key: OURA_CLIENT_ID
+        sync: false
+      - key: OURA_CLIENT_SECRET
+        sync: false
+    disk:
+      name: longevity-platform-data
+      mountPath: /var/data
+      sizeGB: 1
