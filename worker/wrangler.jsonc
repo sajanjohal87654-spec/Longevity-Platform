@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "longevity-platform-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-15",
+  "vars": {
+    "APP_PUBLIC_URL": "https://longevityplatform.app",
+    "CORS_ALLOW_ORIGINS": "https://longevityplatform.app,https://www.longevityplatform.app",
+    "OURA_REDIRECT_URI": "https://longevityplatform.app/integrations?provider=oura"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "longevity-platform-db",
+      "database_id": "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
