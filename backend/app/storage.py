@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 import uuid
 from datetime import date, datetime, timedelta, timezone
@@ -10,7 +11,7 @@ from typing import Any
 from app.medical_knowledge import SAFETY_NOTICE, classify_aqi, interpret_biomarker, normalize_marker_name, source_payload
 
 ROOT = Path(__file__).resolve().parents[1]
-DB_PATH = ROOT / "local.db"
+DB_PATH = Path(os.getenv("SQLITE_DB_PATH", ROOT / "local.db"))
 
 
 def utcnow() -> str:
