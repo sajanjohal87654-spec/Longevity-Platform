@@ -12,7 +12,7 @@
     {
       "binding": "DB",
       "database_name": "longevity-platform-db",
-      "database_id": "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID",
+      "database_id": "3ad62254-e3be-47d3-83e0-30d5719e02b8",
       "migrations_dir": "migrations"
     }
   ]
