@@ -1,0 +1,24 @@
+# Dependencies
+frontend/node_modules/
+
+# Build output
+frontend/.next/
+frontend/out/
+
+# Local databases and caches
+backend/local.db
+backend/.pytest_cache/
+backend/**/__pycache__/
+backend/**/*.pyc
+
+# Environment files with secrets
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# OS/editor noise
+.DS_Store
+*.swp
