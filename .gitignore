@@ -1,5 +1,6 @@
 # Dependencies
 frontend/node_modules/
+worker/node_modules/
 
 # Build output
 frontend/.next/
