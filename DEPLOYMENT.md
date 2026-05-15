@@ -10,7 +10,8 @@ Production domain:
 
 ## Recommended Hosting Setup
 
-Use Vercel for the Next.js frontend and a small backend host for FastAPI.
+Use Vercel for the Next.js frontend. For the backend, the current preferred
+free-path target is Cloudflare Workers with Cloudflare D1.
 
 Frontend:
 
@@ -20,7 +21,31 @@ Frontend:
 - Production environment variable:
   - `NEXT_PUBLIC_API_URL=https://api.longevityplatform.app`
 
-Backend:
+Backend option A - Cloudflare Workers:
+
+- Project root: `worker`
+- Runtime: Cloudflare Workers
+- Database: Cloudflare D1
+- Deploy command: `npm run deploy`
+- Production API URL: `https://api.longevityplatform.app`
+- Secrets:
+  - `OURA_CLIENT_ID=<from Oura>`
+  - `OURA_CLIENT_SECRET=<from Oura>`
+
+Cloudflare setup:
+
+1. `cd worker`
+2. `npm install`
+3. `npx wrangler login`
+4. `npx wrangler d1 create longevity-platform-db`
+5. Copy the returned D1 `database_id` into `worker/wrangler.jsonc`.
+6. `npm run db:migrate`
+7. `npx wrangler secret put OURA_CLIENT_ID`
+8. `npx wrangler secret put OURA_CLIENT_SECRET`
+9. `npm run deploy`
+10. Add `api.longevityplatform.app` as the Worker's custom domain.
+
+Backend option B - FastAPI host:
 
 - Project root: `backend`
 - Build command: `pip install -r requirements.txt`
