@@ -1,7 +1,15 @@
+import pytest
 from fastapi.testclient import TestClient
 
+from app import storage
 from app.medical_knowledge import classify_aqi, interpret_biomarker
 from app.main import app
+
+
+@pytest.fixture(autouse=True)
+def isolated_db(tmp_path, monkeypatch) -> None:
+    monkeypatch.setattr(storage, "DB_PATH", tmp_path / "test.db")
+    storage.init_db()
 
 
 def test_health_dependencies_local_mode() -> None:
